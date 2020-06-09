@@ -29,3 +29,11 @@ This file should replace the uncertainty.js file in the webpage's repo(in folder
 2. Run find_bounds.py
 
 3. Copy the uncertainty.js file and replace the previous one in the webpage repo with this newly created one.
+
+## Requirements
+
+The following python packages:  
+1. numpy  1.15.0    
+2. pandas 0.24.2    
+3. os    
+
