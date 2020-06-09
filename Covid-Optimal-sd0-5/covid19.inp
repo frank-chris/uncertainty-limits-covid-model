@@ -1,0 +1,172 @@
+# ======================================================================
+#       input file for ParMooN
+# ======================================================================
+VERSION:      1
+LOGFILE:      logfile
+OUTFILE:      tcd2d.out
+
+MESH_TYPE: 0
+
+GEOFILE:        ../../ParMooN_CMG/data/UnitSquare.GEO
+# BNDFILE:        ../../ParMooN_CMG/data/UnitSquare.PRM
+BNDFILE:        ../../ParMooN_CMG/data/IndianStates.PRM
+
+#----------------------------------------------------------------------
+# number of uniform refinement steps at beginning
+#----------------------------------------------------------------------
+UNIFORM_STEPS: 5
+----------------------------------------------------------------------
+# order of ansatz space (=k)
+#   i.e. P_k on triangles
+#        Q_k on quadrangles
+# ----------------------------------------------------------------------
+ANSATZ_ORDER: 0
+
+Axial3D: 0
+USE_ISOPARAMETRIC: 0
+
+# ----------------------------------------------------------------------
+# mesh for internal coordinates
+# REACTOR_P1 Initial population
+# REACTOR_P2 Spatial growth factor
+# REACTOR_P3 diffusinon in l1 direction 
+# REACTOR_P4 
+# REACTOR_P11 No. of l0 points
+# REACTOR_P12 ld start pt
+# REACTOR_P13 ld end point
+# REACTOR_P15 No. of l1 points
+# REACTOR_P16 No. of l2 points
+# REACTOR_P19  
+# REACTOR_P20 lv growth DimLessFact 
+# REACTOR_P21  
+# REACTOR_P22 lv: power of (Age - offset) in lv growth factor
+# REACTOR_P25 Growth Model  
+# REACTOR_P26 Nucleation Model  
+# REACTOR_P27 
+# REACTOR_P28 exponential k value
+
+# REACTOR_P29 temp var for l1
+# REACTOR_P30 temp var for l2
+----------------------------------------------------------------------
+P2: 0
+REACTOR_P1: 0
+REACTOR_P2: 0.5
+REACTOR_P3: 0
+REACTOR_P4: 1
+REACTOR_P5: 0
+
+REACTOR_P11: 100
+REACTOR_P12: 0
+REACTOR_P13: 400.0
+REACTOR_P15: 10
+REACTOR_P16: 10
+ 
+REACTOR_P20: 0.001
+ 
+
+REACTOR_P25: 0
+REACTOR_P26: 0
+REACTOR_P28: 0.1
+REACTOR_P29: 0
+REACTOR_P30: 0
+
+----------------------------------------------------------------------
+# INTL_DISCTYPE (l1) FD(0), GALERKIN (1), SUPG(2), DG(5)
+----------------------------------------------------------------------
+INTL_DISCTYPE: 5
+
+----------------------------------------------------------------------
+# order of internal space (-(k+10) for kth order dG)
+# (DG_P0, DG_P1, DG_P2) = (Epsilon, Sigma0, Sigma1) 
+#  { (-1,largeVal,0),  (1,1,0), (1,0,0) } = {SIPG, NIPG, NIPG(0)}
+----------------------------------------------------------------------
+ANSATZ_ORDER_INTL: -11
+
+DG_P0: 1
+DG_P1: 0
+DG_P2: 0
+
+#======================================================================
+# model parameters
+# P0  bv
+# P1  vsymp
+# P2 bd 
+# P3 dsymp
+# P4 ba
+# P5 arisk
+# P6 numcleaction factor
+# P7 sigma - interactive index
+# P8 bsigma       
+# P9 sigma_c 
+# P10  health 
+# P11 bhealth
+# P12 health_c
+# P13 sd
+# P14 bsd
+# P15 sd_c
+#//======================================================================
+P0: 6
+P1: 0.4
+P2: 2
+P3: 5.1
+P4: 7 
+P5: 0.32
+P6: 3.35
+P7: 0.7 
+P8: 0.05 
+P9: 0.7 
+P10: 1.0
+P11: 0.1
+P12: 0.6
+P13: 0.6
+P14: 0.1
+P15: 0.5
+----------------------------------------------------------------------
+# Peclet number eps=1/PE_NR
+----------------------------------------------------------------------
+PE_NR: 1
+
+----------------------------------------------------------------------
+# factors for SDFEM (delta_K=h_K*DELTAi)
+#   DELTA0 for high Peclet number
+#   DELTA1 for low Peclet number
+----------------------------------------------------------------------
+DELTA0: 0.01
+DELTA1:  0.01
+SDFEM_TYPE: 0
+ 
+----------------------------------------------------------------------
+# parameter for time discretization
+----------------------------------------------------------------------
+# time discretization
+# 0 - FORWARD_EULER
+# 1 - BACKWARD_EULER
+# 2 - CRANK_NICOLSON
+# 3 - FRACTIONAL_STEP
+----------------------------------------------------------------------
+TIME_DISC: 2
+STARTTIME: 0
+ENDTIME: 365
+TIMESTEPLENGTH: 0.1
+
+----------------------------------------------------------------------
+# output controls
+----------------------------------------------------------------------
+BASENAME: unitsquare
+VTKBASENAME: Covid
+OUTPUTDIR: VTK
+MAPFILE: Population
+PODFILE: Nucleation
+POD_FILENAME: Recovered
+
+WRITE_PS: 1
+WRITE_VTK: 1
+
+STEPS_PER_IMAGE: 10
+MEASURE_ERRORS: 0  
+
+SC_VERBOSE: 0
+SC_VERBOSE_AMG: 0
+CC_VERBOSE: 0
+
+
